@@ -10,7 +10,7 @@
 <body>
 
 <div class="container mt-4">
-    <h1 class="text-center mb-4">3arket el pokemonet</h1>
+    <h1 class="text-center mb-4">3arket el pokémonet</h1>
 
     <?php
     if (isset($_GET['name1'])) {
@@ -20,6 +20,7 @@
         $attackMax1 = $_GET['attackMax1'];
         $specialAttack1 = $_GET['specialAttack1'];
         $probability1 = $_GET['probability1'];
+        $type1= $_GET['type1'];
     
         $name2 = $_GET['name2'];
         $hp2 = $_GET['hp2'];
@@ -27,7 +28,7 @@
         $attackMax2 = $_GET['attackMax2'];
         $specialAttack2 = $_GET['specialAttack2'];
         $probability2 = $_GET['probability2'];
-    
+        $type2= $_GET['type2'];
         // Combat simulation logic
         class AttackPokemon {
             public $attackMinimal;
@@ -48,12 +49,14 @@
             public $url;
             public $hp;
             public $attackPokemon;
+            public $type;
     
-            public function __construct($name, $url, $hp, $attackPokemon) {
+            public function __construct($name, $url, $hp, $attackPokemon,$type) {
                 $this->name = $name;
                 $this->url = $url;
                 $this->hp = $hp;
                 $this->attackPokemon = $attackPokemon;
+                $this->type = $type;
             }
     
             public function isDead() {
@@ -75,6 +78,7 @@
                     'name' => $this->name,
                     'url' => $this->url,
                     'hp' => $this->hp,
+                    'type'=> $this->type,
                     'specialAttack' => $this->attackPokemon->specialAttack,
                     'attackMinimal' => $this->attackPokemon->attackMinimal,
                     'attackMaximal' => $this->attackPokemon->attackMaximal
@@ -86,8 +90,8 @@
         $attackPokemon1 = new AttackPokemon($attackMin1, $attackMax1, $specialAttack1, $probability1);
         $attackPokemon2 = new AttackPokemon($attackMin2, $attackMax2, $specialAttack2, $probability2);
     
-        $pokemon1 = new Pokemon($name1, "https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/025.png", $hp1, $attackPokemon1);
-        $pokemon2 = new Pokemon($name2, "https://archives.bulbagarden.net/media/upload/f/fb/0001Bulbasaur.png", $hp2, $attackPokemon2);
+        $pokemon1 = new Pokemon($name1, "https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/025.png", $hp1, $attackPokemon1,$type1);
+        $pokemon2 = new Pokemon($name2, "https://archives.bulbagarden.net/media/upload/f/fb/0001Bulbasaur.png", $hp2, $attackPokemon2,$type2);
     
         // Simulation du combat
         $round = 1;
@@ -112,6 +116,7 @@
                                 <tr><td>Attack Minimal</td><td>{$pokemon1Info['attackMinimal']}</td></tr>
                                 <tr><td>Attack Maximal</td><td>{$pokemon1Info['attackMaximal']}</td></tr>
                                 <tr><td>Special Attack</td><td>{$pokemon1Info['specialAttack']}</td></tr>
+                                <tr><td>Special Attack</td><td>{$pokemon1Info['type']}</td></tr>
                             </tbody>
                         </table>
                     </div>";
@@ -128,6 +133,7 @@
                                 <tr><td>Attack Minimal</td><td>{$pokemon2Info['attackMinimal']}</td></tr>
                                 <tr><td>Attack Maximal</td><td>{$pokemon2Info['attackMaximal']}</td></tr>
                                 <tr><td>Special Attack</td><td>{$pokemon2Info['specialAttack']}</td></tr>
+                                <tr><td>Special Attack</td><td>{$pokemon2Info['type']}</td></tr>
                             </tbody>
                         </table>
                     </div>
@@ -153,26 +159,30 @@
             let attackMax1 = prompt('Enter the maximum attack value of the first Pokémon:');
             let specialAttack1 = prompt('Enter the special attack multiplier of the first Pokémon:');
             let probability1 = prompt('Enter the special attack probability (0-100) of the first Pokémon:');
-    
+            let type1=prompt('entrer le type du pokemon 1 : 1)feu , 2)eau, 3)plante');
+
             let name2 = prompt('Enter the name of the second Pokémon:');
             let hp2 = prompt('Enter the HP of the second Pokémon:');
             let attackMin2 = prompt('Enter the minimum attack value of the second Pokémon:');
             let attackMax2 = prompt('Enter thegit maximum attack value of the second Pokémon:');
             let specialAttack2 = prompt('Enter the special attack multiplier of the second Pokémon:');
             let probability2 = prompt('Enter the special attack probability (0-100) of the second Pokémon:');
-    
+            let type2=prompt('entrer le type du pokemon 2 : 1)feu , 2)eau, 3)plante');
+
     window.location.href = 'index.php?name1=' + name1 +
         '&hp1=' + hp1 +
         '&attackMin1=' + attackMin1 +
         '&attackMax1=' + attackMax1 +
         '&specialAttack1=' + specialAttack1 +
         '&probability1=' + probability1 +
+        '&type1=' + type1 +
         '&name2=' + name2 +
         '&hp2=' + hp2 +
         '&attackMin2=' + attackMin2 +
         '&attackMax2=' + attackMax2 +
         '&specialAttack2=' + specialAttack2 +
         '&probability2=' + probability2;
+        '&type1=' + type1 +h
         </script>";
     }
 
